@@ -6,7 +6,7 @@ Python Cheat Sheet
 / division "returns non-integer"
 // division "guaranteed return of an integer 4//3 = 1"
 % modulo "returns remainder"
-** exponential/power of "returns the power of something"
+** exponential/power of "returns the power of something - 2**3 = 8"
 
 # Comment with the hashtag symbol
 
@@ -73,8 +73,8 @@ print(my_really_really_realy_clear_name)
 
 name = input("What is your name? ")
 age = input("What is your age? ")
-print("I know that", name, "is", age, "years old!")
-"I know that Kevin is 20 years old!"
+print("I know that", name, "is", age, "years old!") #python automatically adds a white space before and after name and age
+"I know that Kevin is 20 years old!" 
 
 # the , in the print function combines the arguments together into a single output, separating each adjacent pair with a space
 
@@ -112,6 +112,118 @@ print('2 x', num, '=', 2 * num)
 num = int(input('Enter a number to double: ')) # type casting here allows the input to be converted into an integer
 print('2 x', num, '=', 2 * num)
 # 2 * 20 = 40
+
+# type casting - converts the object from one type to another
+# you will fail if you try to convert a float to an integer or a string into a int/float
+
+str -> int
+print(int("240")) # 240 (but as an integer)
+
+int -> float
+print(float(24)) # 24.0 
+
+float -> str
+print(str("24.502")) # 24.502 (but as a string '2','4','.','5','0','2')
+
+
+# floating point numbers - if a number has ad ecimal play, python will interpret it as a float 
+print(3/4) #0.75
+print(300000000000.0) # 3e+11
+print(1e3) # 1000.0
+print(1.23e-2) #0.0123
+
+# expressions
+int(*,+,-)int         int
+int/int               float # division always makes it a float 
+float(*,+,-,/)float   float
+float(*,+,-,/)int     float
+int(*,+,-,/)float     float
+
+
+# beware of rounding errors for floating point numbers 
+a = 12345678901234567890
+b = 0.1
+c = a + b - a # 0.0 - due to rounding errors 
+
+
+# Boolean variables - default values cast to False 
+print(bool(1)) # True
+print(bool(2.0)) # True
+print(bool("False")) # True
+print(bool(0)) # False
+print(bool(0.0)) # False
+print(bool("")) # False
+print(bool(False)) # False 
+
+# Binary relational operators 
+<	# less than 
+<=	# less than or equal
+==	# equal
+!=	# not equal
+>	# greater than
+>=	# greater than or equal
+
+print(1 > 2)		# False
+print(1 + 1 >= 1)	# True	
+print(2 == 4/2)	 	# True
+
+# Strings are compared and sorted by their alphabetical order ** Lowercase letters are greater than Uppercase letters
+print('he'<'hi')			# True
+print('Help' >= 'Hello')	# False
+print('h' > 'H') 			# True
+print('Z' < 'a')			# True
+
+# if you want to see why you can use ord('a'), it returns the numerical value of each alphabet
+
+print(ord('a'))	# 97
+print(ord('A'))	# 65
+print('a'>'A')	# True
+
+# We can check if a string is a substring of another string - whether there's 'texta' in 'textb'
+
+print('Hi' in 'HiHi')	# True
+print('Hi' in 'hi') 	# False
+
+# ordering of string matters
+
+print('le' in 'hello')	# False
+print('' in 'hello')	# Trie
+
+print(True and True)	# True 
+print(True and 1 != 1)	# False (as long as there's a False it will return false)
+print(1 > 2 or True)	# True (as long as there's a True it will return true)
+print(not True)			# False (negating a true will give you a false, vice versa)
+
+# precedence in logical operators -- in > not > and > or
+
+print(not 1 > 2 and 1 > 0 or "din" in "coding") # True
+# python first evaluates 1>2, 1>0 and "din" in "coding"
+# not False and True or True
+# True and True or True 
+# True or True (True and True == True)
+# True --
+
+print("Monday" and not "holiday" and not "birthday")
+# what do you think this evaluates to?
+# Every non-empty string evaluates to True
+# so this means - True and not True and not True
+# True and False and False
+# False 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
