@@ -205,10 +205,92 @@ print(not 1 > 2 and 1 > 0 or "din" in "coding") # True
 
 print("Monday" and not "holiday" and not "birthday")
 # what do you think this evaluates to?
-# Every non-empty string evaluates to True
+# Every non-empty string evalutes to True
 # so this means - True and not True and not True
 # True and False and False
 # False 
+
+n = 4 
+print((0<n) and (n<6)) # True
+print(0<n<6) # True (short version)
+
+
+# uing if-elif-elif-elif-else statements (elif can be used multiple times but if-else only once)
+
+n = int(input("Enter an integer: "))
+if 0 < n < 16:
+	print('You entered a postiive integer less than 16') 
+print('Try again with another interger!') # if the value is not between 0 and 16, you wil see this
+
+# indentation is used so python knows what statement to run when the if statement is True
+# If there were more lines of code associated with the if statement, it would simlarly be indented
+# This combined set of staments is termed a block and the general form of an inf statement is as follows:
+
+if condition:
+	# first condition block
+
+elif condition:
+	# alternative condition block
+
+else:
+	# alternative condition block
+
+# multiple conditions: 
+
+if cond:
+	# block 1 of statements
+
+elif cond2:
+	# block 2 of statements
+
+elif cond3:
+	# block 3 of statements
+
+else:
+	# block n of statements 
+
+# Tip:
+# Always (at least consider) include an else clause. This ensures there is always something
+# for python to run, and forces you to think about all the cases. If you do not have an else
+# clause, but just a sequence of if.. elif... there is a chance non of the elif conditions are
+# true, and then nothing happens. This is a very COMMON ERROR! 
+
+# Example:
+
+number = int(input("Enter a number: "))
+if (number>5):
+	message = "The number is greater than 5"
+elif(number<5):
+	message = "The number is less than 5"
+print(messsage)
+
+# if you included the else clause they would have remembered that the number could be 5 also.
+# ** It is also bad practice to define variables inside if blocks, there's a better version below: **
+
+number = int(input("Enter a number:"))
+message = "a message"
+if (number > 5):
+	message = "The number is greater than 5"
+elif (number < 5):
+	message = "The number is less than 5":
+else:
+	message = "The number is five!"
+print(message)
+
+
+# special symbols being used as markers ^ and $
+
+name = "^" + input("Subject: ") + "$"
+if "omics$" in name:
+	print ("Life science Major")
+elif "^comp" in name or "^info" in name:
+	print("Computer Major")
+elif "$y" in name:
+	print("Biology Major")
+else:
+	print("Not science major")
+
+# as you can see, the markers are use to meet the requirements of the conditions
 
 
 
