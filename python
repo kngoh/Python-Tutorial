@@ -462,6 +462,110 @@ print(my_tuple[:1:-1]) # ('age', 70)
 
 
 
+# Functions
+------------
+# Think of this as a formula to achieve something
+# writing functions help you streamline code so it doesn't need to be copy and pasted here and there
+
+# suppose we have the following formula for the number of standard drinks in a drink
+
+volume = 0.375
+percentage = 13.5
+drinks = volume * percentage * 0.789
+print(drinks)
+
+# But what if we want to perfrom this calculation over different values of volumes and percentages 
+
+def std_drinks(volume,percentage):
+	return volume * percentage * 0.789
+
+print(std_drinks(0.375,13.5)) # 3.99431250000004
+print(std_drinks(0.586,3.8)) # 1.7569452
+print(std_drinks(1.5,0)) # 0.0
+
+# Take a look at another exmaple:
+# Calculate the number of standard drinks contained in 'volume'
+# of alcoholic drink `percentage` % of alcohol
+
+def std_drinks(volume,percentage):
+	return volume * percentage * 0.789
+
+# We use the function to do the calculation
+print(std_drinks(0.375,13.5))
+# The values taken into the function are called arguments and using by using a func you're calling a func
+
+# Why use functions?
+# 1. Saves space by reducing repeated code
+# 2. If there was an error in the function we would only have to fix it once rather than every other duplicate 
+
+# We've actually already seen some arguments before, can you guess them? 
+
+len([1,2,3]) # function that calculates the lenght of string/list/tuple
+print("hello","bob") # print function that took 2 arguments
+
+# if you notice, functions always have () after the function name lower(), len(), type(), 
+
+# The basic components of a function are:
+# 1. The function name - follow the same rule as variables, they must start with a letter or an underscore
+def my_function_name
+
+# 2. The arguments - variables that will be passed on into the code segment in the function
+def my_function_name(arg1,arg2,arg3):
+
+# 3. The actual computation that the funciton does when called
+def my_function_name(arg1,arg2,arg3):
+	maxnum = arg1
+	if arg1 > maxnum:
+		maxnum = num1
+	elif arg2 > maxnum:
+		maxnum = arg2 
+
+# 4. Some mechanism for returning a value and exiting the function 
+def my_function_name(arg1,arg2,arg3):
+	maxnum = arg1
+	if arg1 > maxnum:
+		maxnum = num1
+	elif arg2 > maxnum:
+		maxnum = arg2 
+	return maxnum
+
+
+# Functions do not display any output on the screen unless the output is explicitly printed 
+
+def silly_fucntion():
+	return "I'm silly"
+
+w = silly_fucntion # return value is stored but not displayed
+print(w) # returns "I'm silly"
+
+
+# Note that a function has to be defined before you can call it, so always have your function above you call because python reads top-down
+
+def a_function():
+	print("Returning a number: ")
+	return 1
+	print("Returning a number: ")
+	return 3 
+
+# the output will be 
+# Returning a number: 
+# 1 
+
+# When the return statement is executed, the function "stops" and returns the value given. This means that anything below it will be ignored/not executed 
+
+# A function can have as many arguments as needed 
+def a_function(arg1,arg2,...,argn):
+
+# The arguments however need to have different names 
+def a_fucntion(a,a,a,): # WRONG
+def a_function(a,b,c): # RIGHT
+
+# A function can also have no arguments 
+def a_fucntion():
+	return -1
+print(error_code())
+
+
 
 
 
