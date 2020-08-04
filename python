@@ -10,8 +10,10 @@ Python Cheat Sheet
 
 # Comment with the hashtag symbol
 
+
+
 # STRINGS 
------------
+----------
 
 Python accepts double quotation and single quotation marks 
 
@@ -29,6 +31,7 @@ print("Hi"+"Hi"+"Hi")
 print("Hi" * 3)
 "HiHiHi"
 "HiHiHi"
+
 
 # VARIABLES
 ------------
@@ -78,7 +81,10 @@ print("I know that", name, "is", age, "years old!") #python automatically adds a
 
 # the , in the print function combines the arguments together into a single output, separating each adjacent pair with a space
 
+
+
 # DATA TYPES
+-------------
 
 int 	- # For whole numbers -3, -5, 10
 float	- # For real numbers -3.0, 0.5, 3.14159
@@ -155,7 +161,11 @@ print(bool(0.0)) # False
 print(bool("")) # False
 print(bool(False)) # False 
 
+
+
 # Binary relational operators 
+------------------------------
+
 <	# less than 
 <=	# less than or equal
 ==	# equal
@@ -221,6 +231,11 @@ n = int(input("Enter an integer: "))
 if 0 < n < 16:
 	print('You entered a postiive integer less than 16') 
 print('Try again with another interger!') # if the value is not between 0 and 16, you wil see this
+
+
+
+# Conditionals
+---------------
 
 # indentation is used so python knows what statement to run when the if statement is True
 # If there were more lines of code associated with the if statement, it would simlarly be indented
@@ -294,13 +309,44 @@ else:
 
 
 
+# Sequences
+------------
+# A sequence is like a numbebred list of objects (like a shopping list)
 
+"44 cats"
 
+# They are sequences of smaller strings, one for each character
+# The positions of characters within a string are numbered
 
+"4" "4" " " "c" "a" "t" "s"
+ 0   1   2   3   4   5   6 
 
+# To access a character at a particular postion we specify its poistion using numbers 
+# in a square brackets (e.g [1]). This is called indexing or subscripting the string.
+# the number inside the brackets is called the index. Example below: 
 
+s = "The number is 69"
+print(s[0]) # T
+print(s[1]) # h
+print(s[2]) # e
 
+# what happens when you try to index outside of the string say s[17]?
+# try it what happens?
+# you get an error message
+# So how do you find out the length of the string? 
 
+n = len(s)
+print(n) # 16 
+print(len("Hello")) # 5
+
+# what happens if we index a negative number (e.g.,[-2])
+
+s = "The number is 69"
+print(s[-1]) # 9
+print(s[-2]) # 6
+print(s[-4]) # s
+
+# negative indexing start from the end of the string and starts with -1 not -0 (there's no such thing as -0)
 
 
 
