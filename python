@@ -348,6 +348,122 @@ print(s[-4]) # s
 
 # negative indexing start from the end of the string and starts with -1 not -0 (there's no such thing as -0)
 
+# what if we want a specific part (substring) of the sequence?
+# we call this a slice
+
+s = "The number is 69"
+print(s[1:8]) # he numb
+print(s[0:len(s)]) # The number is 69
+
+# you can also slice negative indices
+
+s = "The number is 69"
+print(s[4:-6]) # number
+print(s[-6:-1]) # is 6
+print(s[-6:len(s)]) # is 69
+
+# python gives 2 shortcuts when it comes to slicing:
+s = "The number is 69"
+# 1. If the start index is 0 then you can leave it blank
+print(s[:5]) # The n
+
+# 2. If the end index is the length of the string then you can leave it blank
+print(s[5:]) # umber is 69
+print(s[:]) # The number is 69
+
+
+# you can also tell python how much to step through the list
+s = "abcdef"
+print(s[::2]) # ace
+print(s[0:3:2]) # ac
+# if the third digit in the splice is a negative number, it reverses the direction
+print(s[2::-1]) # cba 
+print(s[2:0:-1]) # cb
+print(s[-4:-6:-1]) # cb
+
+# if there is nothing in betwee nthe indices, an empty string is returned
+# unlike indexing beyond the len(s) which returns an error an empty string is returned
+
+print(s[0:2:-1]) # ""
+
+
+
+# LISTS
+--------
+# Another form of sequences used for stroing sequences of different objects 
+# this is useful when wanting to store a list of words and finding which is the longest 
+# or a the cost of items or maybe a list of both
+
+# This is how we define a list 
+my_words = ["pig","pineapple","panoply","polyp"]
+my_costs = [5.0, 12.0, 20000000.59]
+my_jumble = ["jumbly","wumbly","number",5]
+
+# An empty list looks like this
+empty = []
+
+# Once you have created a list, you can do everything you have seen for strings as both are sequences 
+# strings are sequences of characters, and lists are sequences of whatever objects you like 
+
+my_jumble = ["jumbly","wumbly","number",5]
+
+print(my_jumble) # ["jumbly","wumbly","number",5]
+print(my_jumble[1]) # "wumbly"
+print(my_jumble[-1]) # 5
+print(my_jumble[:1:-1]) # [5, "number"]
+
+# you can find the len of the list too:
+
+print(len(my_jumble)) # 4
+
+print(my_jumble[9]) # returns IndexError: list index out of range 
+
+# we can also concatenate lists just like strings 
+
+my_list = [1,2,3] + [4,5,6]
+print(my_list) # [1,2,3,4,5,6]
+
+# remember what happens when we multiply a string? 
+# the same can be used on a list 
+
+my_list = [1,2,3] * 5
+print(my_list) # [1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]
+
+# finally the 'in' operator also works for lists
+
+my_list = [1,2,3]
+print(1 in my_list) # True
+
+
+
+# TUPLES
+---------
+# This is essentially the same as a list, but it can't be changed after creation (immutable)
+# this will make more sense when we get to a later part in this tutorial 
+# tuples work the same as lists but uses () instead of []
+
+single = (3,)
+print(len(single)) # 1
+# notice how there is a ',' after the 3
+# this lets python know that you're assigning a tuple to single instead of an integer 
+# if you put single = (3), python will think it's just an integer 
+# and you can't find the len(single) of an integer if it were just (3) instead of (3,)
+
+# and we can do all the same things as we have seen over other sequences: 
+
+my_tuple = ('height', 3, 'age', 70)
+print(my_tuple) # ('height', 3, 'age', 70)
+print(my_tuple[1]) # 3
+print(my_tuple[-1]) # 70
+print(my_tuple[:1:-1]) # ('age', 70)
+
+# There is more complete list of all operations and properties of sequences in the link below
+# docs.python.org/3/library/stdtypes.html
+
+
+
+
+
 
 
 
