@@ -566,16 +566,92 @@ def a_fucntion():
 print(error_code())
 
 
+# METHODS 
+----------
+# These are special functions that belong to specific data types. They are written and called a bit differently.
+# An example of a method is upper() method, which converts the string to uppercase and returns it.
+
+my_str = "take the pie out"
+print(my_str) # "take the pie out"
+prtin(my_str.upper()) # "TAKE THE PIE OUT"
+
+# Just as was the case with functions, methods calls always require parentheses, and if there are not extra (arguments)
+# the parentheses should be empty. However methods always get object they're called from as an argument. So in this case
+# upper() received my_str as an argument automatically
+
+# Try and write a fucntion that utilises a method to count the number of words in a sentence
+# solution below if you can't figure it out, ** tip: use .split()
+
+def word_count(input_str):
+	words = input_str.split()
+	return len(words)
 
 
+# One str method that is particulrl useful is format
+# The power of format is displayed below 
+
+num1 = 5 
+num2 = 6.7
+
+print("The quotient of " + str(num1) + " and " + str(num2)+ " is " + str(num1/num2))
+print("The quotient of",num1,"and",num2,"is",num1/num2)
+
+# string concatenation involves casting every value to a string, which is tedious,
+# we have no way of controlling the number of decimal places a given float is printed to
+# and print with multiple arguments inserts a space between each pair of arguments 
+
+# The power of formal allows us to simplify this
+
+print("The quotion of {} and {} is {:.2f}".format(num1,num2,num1/num2))
 
 
+# Lets start with a simple example of format:
 
+print("I own {} horses". format(10)) # "I own 10 horses."
 
+# In this example, the format string is "I own {} horses." The format method is used to gnerate a new
+# string by substituting a value into a format string. THe empty curly braces {} are used to tell the 
+# format method where in the string the value should go.
 
+# For floating point numbers, Python has even finner control. THe format specifier {:6.2f} tells format
+# to use at least 6 characters in total and use exactly two digits after the deicmal points
 
+pi = 3.1415926
+print("{:<6.2f}".format(pi)) # pad on the right
+3.14  # Total of 6 spaces used
+print("{:6.2f}".format(pi)) # pad on the left
+  3.14# Total of 6 spaces used
 
+# format also has the ability to embed different types (not just numbers) in strings like so:
 
+print("strings: {:s}".format("9743")) # strings: 9743
+print("binary number: {:b}".format(9743)) # binary number: 10011000001111
+print("integer base 10: {:d}".format(9743)) # integer base 10: 9743 
+print("Call me on my {:c}".format(9743)) # (picture of a telephone)
+# {:c} converts the integer into a special character 
+# It's called Unicode characters 
+
+# If there is nothing before the colon, Python will substitue in the arguments to format in sequence
+# i.e. the first argument to format will be substituted for the first occurerence of curly braces, the
+# second for the second, etc. You can also, however, index the arguments to format in the same way that
+# you index the elemtns of a list, e.g.:
+
+print("{0} {0} It's off to work we go".format("Hi Ho!"))
+# Hi Ho! Hi Ho! It's off to work we go
+
+print("""{t1} and {t2} 
+	Agreed to have a battle;
+For {t1} and {t2}
+	Had spoiled his nice new rattle.""".format(t1="Tweedledum",t2="Tweedledee"))
+
+# Tweedledum and Tweedledee
+# 	Agreed to have a battle;
+# For Tweedledum and Tweedledee
+#	Had poiled his nice new rattle. 
+
+# More resources if you want to learn more at:
+# pyformat.info 
+# docs.python.org/3/library/string.html#format-string-syntax
 
 
 
