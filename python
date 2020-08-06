@@ -891,6 +891,232 @@ if not found_negative:
 
 
 
+# MUTABILITY AND ADVANCED SEQUENCES 
+------------------------------------
+# If you remember we mentioned that tuples were immutable as compared to lists that are mutable
+# if a value cannot be changed after it is created, it is immutable. 
+# if a value can be change after it is created, it is mutable 
+# Lists, dictionaries and sets are mutable
+# Everything else is immutable - strings, tuples, numbers(int/float/booleans)
+
+# If an object is mutable, then its value may change, while its id remain constant. 
+# Try this code out in your text editor and you will see what this means:
+
+my_list = [1,0]
+print("id of my_list:",id(my_list)) # id of my_list: 4140487884
+print(my_list) # [1,0]
+my_list[0] = 3
+print("id of my_list:",id(my_list)) # id of my_list: 4140487884
+print(my_list) # [3,0]
+
+# if you try doing this with a tuple you'll get a TypeError because tuples are immutable, try it out! 
+
+# What if you have a list which is mutable in a tuple as seen below:
+
+my_tuple = (7,[])
+print("ids of items in tuple:",id(my_tuple[0],id(my_tuple[1]))) # 410594380
+my_tuple[1].append("hello")
+print(my_tuple) # (7,["hello"])
+print("ids of items in tuple:",id(my_tuple[0],id(my_tuple[1]))) # 410594380
+
+# It is important to understand that the assignment operator (=) points a variable to a particular object: 
+
+# The object id of 5 
+print(id(5))
+q = 5 
+# The object now pointed tob y the variable q.
+print(id(q))
+
+
+# When we point a variable to a mutable objet, if we change the value of the object using one variable, 
+# we will see the cahnge in the other variable, as they both point to the same object! 
+
+list1 = [1,2,3]
+print("The id of the object pointed to by list1:", id(list1)) # The id of the object pointed to by list1: 414044282
+list2 = list1
+print("The id of the object pointed to by list2:", id(list2)) # The id of the object pointed to by list2: 414044282
+list1.append(8)
+print(list1) # [1,2,3,8]
+print(list2) # [1,2,3,8]
+
+# Notice how we never did anything to list2 vairable. This would never happen with an immutable object,
+# be cause we cannot change its value. Note also that we can see when two variables point to the same 
+# object with the is operator
+
+list1 = [5]
+list2 = list1
+print(list1 is list2) # True
+
+# One place where you should be particularly aware of mutability is when you call a function with a vairable which
+# has been assigned to a mutable object, and the function mutates the argument. The function below exploits this to
+# swap the first and last elements of a list wihtout ever returning anything.
+
+def swap(a_list):
+	tmp = a_list[0]
+	a_list[0] = a_list[-1]
+	a_list[-1] = tmp
+my_list = [1,2,3]
+swap(my_list)
+print(my_lsit) # [3,2,1]
+
+
+
+# Useful List Methods (Part1)
+# Python allows you mutate a list using some built in methods
+
+# .append() - adds a new item to the end of the list
+
+chomsky = ['colour','odour','taste']
+chomsky.append('feeling')
+print(chomsky) # ['colour','odour','taste','feeling']
+
+# .pop() - removes the final element or if called with a numeric arg, removes the element of that index
+
+chomsky = ['colour','odour','taste']
+print(chomsky.pop()) # 'taste'
+print(chomsky) # ['colour','odour']
+print(chomsky.pop(0)) # 'colour'
+print(chomsky) # ['odour']
+
+# .insert() - inserts an item into a list at a specific index (remember that index starts at 0)
+
+chomsky = ['colour','odour','taste']
+chomsky.insert(1,'sleep')
+print(chomsky) # ['colour,'sleep','odour','taste']
+
+# .remove() - deletes the first occurrence of an item in a list. An error occurs if the item is not in the list
+# an error occurs if the argument to remove is not in the list
+
+chomsky = ['colour','odour','taste']
+chomsky.remove('colour')
+print(chomsky) # ['odour','taste']
+
+# .index() - non-mutating method that returns the position of the first occurrence of an item
+# an error occurs if the argument to index is not in the list 
+
+chomsky = ['colour','odour','taste']
+print(chomsky.index('taste')) # 2  
+
+
+# Because lists are mutable, you should be careful when iterating over them. If you change the list 
+# while you iterate over it, this could have some unexpected effets. 
+# For example, the following code was suppose to print each element of a list, then remove it
+
+my_list = [1,2,3,4]
+for i in my_list:
+	print(i) 
+	my_list.remove(i)
+print(my_list) # [2,4]
+
+
+# As we saw earlier, Python provides a conveninet way to turn a string into a list of words, using .split()
+sniglet = "The one cube left"
+sniglet_words = sniglet.split()
+print(sniglet_words) # ["The", "one", "cube", "left"]
+
+# By default, split segments based on "whitespace", however it's you can change this behaviour by speciying a separator
+
+print("1,2,3".split(','))) # 123
+print("look b4 you leap".split('b4')) # ['look ',' you leap']
+
+
+# Let's try a little exercise
+# Write a function that uses a for loop and break that takes a single argument text in the form of a string, and returns 
+# a list of the all-alphabetic words in text up until the first word containing a non-alphabetic character. 
+# TIP: use .isalpha() that returns true or false if the text is made up of all alphabetical cahracters, otherwise false
+
+wordlist("How much wood could a k9 chuck")
+# ['How', 'much', wood', 'could', 'a']
+wordlist("99 Luftballons")
+# []
+wordlist("It can kill 69 birds")
+# ['It', 'can', 'kill']
+
+# Solution below:
+
+def wordlist(text):
+	sentence = text.split()
+	result = []
+	for i in sentence:
+		if i.isalpha():
+			result.append(i)
+		else:
+			break
+	return result
+
+
+# Sorting 
+# One list operation that you will find many applications for is sorting the elements
+# There are two ways of doing this, which will you will inevitably confuse at some point 
+# because of the names being so similar
+# 1. sorted() function
+# 2. sort() method
+
+# sorted() - takes a list and returns a new list with the elements in sorted order (without mutating the original list)
+randlist = [4,1,3.0,2,5]
+print(sorted(randlist)) # [1,2,3.0,4,5]
+print(randlist) # [4,1,3.0,2,5]
+
+# it can also be applied to a list of strings, in which case the sort order is based on the underlying Unicode values:
+
+print(sorted(['abacus', 'a', 'aardvark', 'ABC'])) # ['ABC', 'a', 'aardvark', 'abacus']
+
+# if you try to used sorted with mixed value types you will get a TypeError
+
+print(sorted('1',2,3,'4.0','five')) # TypeError
+
+# if you want to reverse-sort, simply set the optional reverse keyword to true:
+
+print(sorted(1,4,3.0,2,5), reverse = True) # [5,4,3.0,2,1]
+
+
+
+# sort() - operates in-place, in that it mutates the list so that the elements are sorted
+
+randlist = [4,1,3.0,2,5]
+print(sort(randlist)) # [1,2,3.0,4,5]
+print(randlist) # [1,2,3.0,4,5]
+
+# whereas the following is almost certainly not the desired effect:
+
+randlist = [4,1,3.0,2,5]
+randlist = randlist.sort()
+print(randlist) # None
+
+# one way to avoid the confusion is to use sorted exclusively, and remember to reassign the result back to thel ist ariable (as above) 
+# if the intentionis to sort a list in-place. Another advantage of sorted is that i can be applied to any sequence, including lists and
+# tuples (althought it will always return a list):
+
+print(sorted('bananas')) # ['a','a','a','b','n','n','s']
+print(sorted((3,1,5))) # [1,3,5]
+
+
+# Let's use what we've learnt
+# Write a funciton sorted_words(wordlist) that takes a single list-of-words argument wordlist,
+# and returns a sorted list of words in wordlist where the letters are alphabetically sorted
+# e.g. abc or bet are sorted, cat and elephant are not 
+# TIP: use list() that takes an object and puts it into a list separating each character with a ','
+
+def sorted_words(wordlist):
+	answer = []
+	for word in wordlist:
+		if sorted(word) == list(word):
+			answer.append(word)
+	return answer 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
