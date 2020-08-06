@@ -655,26 +655,239 @@ For {t1} and {t2}
 
 
 
+# ITERATIONS
+-------------
+# Iterations are used to help repeat something without having to copy and past the code with different
+# value each item
+
+print("10 seconds to liftoff!")
+print("9 seconds to liftoff!")
+print("8 seconds to liftoff!")
+print("7 seconds to liftoff!")
+print("6 seconds to liftoff!")
+print("5 seconds to liftoff!")
+print("4 seconds to liftoff!")
+print("3 seconds to liftoff!")
+print("2 seconds to liftoff!")
+print("1 seconds to liftoff!")
+print("Lift off!")
+
+# We can easily do this using a loop (for/while)
+
+# WHILE LOOPS
+
+seconds = 10
+while seconds > 0:
+	print("{} secpmds tp liftoff!".format(seconds))
+	sec = sec - 1
+print("Lift off!")
+
+# very much like an if statement, the while statement tests whether a condition
+# evaluates to true. In the instance it is true, it executes the code associated 
+# with the while statement 
+
+# ** you must ensure the while loop terminates (sec = sec -1) if not it'll keep running and never end
+
+# When iterating, it is very common to need to assign values to variables which depend on the previous
+# value of the variable. A particularly common one: 
+
+i = 0
+print(i) # 0
+i = i + 1
+print(i) # 1
+
+# or can be written as 
+
+i = 0
+print(i) # 0
+i += 1
+print(i) # 1
+
+# you will see this more often when you start coding 
+
++= 	# i = i + 1
+-= 	# i = i - 1
+*= 	# i = i * 1
+/= 	# i = i / 1
+%= 	# i = i % 1
+**=	# i = i ** 1
+//=	# i = i // 1
+
+
+# There is an alternative for exiting a while loop
+# a 'break' statement can be used to terminate the loop
+
+word = "rendezvous"
+while word:
+	if word[0] == 'z':
+		word = word[1:]
+		break
+	word = word[1:]
+print(word) # vous
+
+# The code looks at one letter at time, until it finds the 'z' 
+# it then removes the z and assigns the remaining letters to word
+# in this cause rendezvous -> vous.
+# as soon as the it entered the if block and broke out of the loop
+
+# to visualize: use your finger and point it at line 720
+# and like python you read each line of code one at a time 
+# and just keep repeating until you reach letter z and that's when 
+# you can enter the loop and when you hit break, your finger moves to 726
 
 
 
+# FOR LOOPS
+
+my_list = [1,2,3]
+for elem in my_list:
+	print(elem) # 1\n 2\n 3\n
+
+# \n in coding means next line, if you typed this out in your terminal it will be printed as:
+# 1
+# 2 
+# 3
+
+# The variable elem takes each value of my_list one by one until we get to the end of the list
+
+# you can also do the same with strings
+
+my_list = "Hello Bill"
+for char in my_list:
+	print(char) # H\n e\n l\n l\n o\n \n B\n i\n l\n l\n 
+
+# for loops work better for iteratable items 
 
 
+# let's look at another example
+# Below we are iterating over a text to find the number for vowels (assuming the text is in lower case)
+
+text = "a piece of string"
+vowel_count = 0
+for letter in text:
+	if letter in "aeiou":
+		vowel_count += 1
+print(vowel_count) # 6
+
+# let's try and combine what we've learnt
+# Write a function that takes an input and puts an * after each letter
+# Richard --> R*i*c*h*a*r*d*
+
+def make_word(text):
+	word = ""
+	for letter in text:
+		word += letter + "*"
+	return(word)
+
+# let's look at another example
+# Below we are finding the average of a list of numbers 
+
+numlist= [14,5,7,8,23]
+total = 0 
+for num in numlist:
+	total += num
+print(total/len(numlist)) # 11.6
+
+# Lets take a look (while-loop) example:
+
+numlist = [20,1,2,3,4,5,10]
+minnum = numlist[0]
+i = 1 
+while i < len(numlist):
+	num = numlist[i]
+	if num < minnum[i]:
+		minnum = num
+	i += 1
+print(minnum) # 1
+
+# Thie while loop prints the smallest value in the list, try and visualize what's happening here! 
+
+# let's see how we can do above differently 
+# We can utilise the range function 
+
+print(list(range(0,5))) # [0,1,2,3,4,5]
+print(list(range(0,2))) # [0,1,2]
+print(list(range(1,3))) # [1,2,3]
+print(list(range(2,2))) # []
+
+numlist= [14,5,7,8,23]
+total = 0 
+for num in range(1,len(numlist)):
+	num = numlist[i]
+	if num < minnum:
+		minnum = num
+print(minnum)
+
+# another way we can do the above is using indexing
+
+numlist= [14,5,7,8,23]
+total = 0 
+for num in numlist[1:]:
+	if num < minnum:
+		minnum = num
+print(minnum)
 
 
+# Let's take a look at another example:
+
+wordlist = ["apples", "bananas", "cantaloupes"]
+MIN_WORD_LENGTH = 7
+longwords = []
+for word in wordlist:
+	if len(word) >= MIN_WORD_LENGTH:
+		longwords.append(word)
+print(longwords) # ["bananas", "cantaloupes"]
+
+# The code above prints words that are longer than 7 or more letters 
+# did you notice a new method? .append()
+# .append() is a method used to add values to a list 
+
+# now lets try to do the same using a while loop
+
+wordlist = ["apples", "bananas", "cantaloupes"]
+MIN_WORD_LENGTH = 7
+longwords = []
+while wordlist:
+	if len(wordlist[0]) >= MIN_WORD_LENGTH:
+		longwords.append(wordlist[0])
+	wordlist = wordlist[1:]
+print(longwords) # ["bananas", "cantaloupes"]
+
+# we can do this without mutating the list, using list indexing
+
+wordlist = ["apples", "bananas", "cantaloupes"]
+MIN_WORD_LENGTH = 7
+longwords = []
+i = 0
+while i < len(wordlist):
+	if len(wordlist[i]) >= MIN_WORD_LENGTH:
+		longwords.append(wordlist[i])
+	i += 1
+print(longwords) # ["bananas", "cantaloupes"]
 
 
+# After seeing how you can use a for or while loop to achieve your desired goal
+# So how do you know when to use the right one? 
+# While loops are slihgtly "fiddlier" than for loops as we need to set up a test in the while condition
+# and make sure to update the variable in the test appropriately in the body of our code. 
+# in programming, fiddlier means more lines of code and it tends to correlate with a greater margin of error
+# and as such for loops should be your default choice. However there are occasions where a while loop leads
+# to cleaner code, e.g. in acases here you know that you won't need to iterate over all elements in the iterable
+# such as checking for the existence of an element of a particular type in an interable (demonstrated below):
 
+numlist = [3,1,-1,0]
+found_negative = False
+i = 0
+while (not found_negative) and i < len(numlist):
+	if numlist[i] < 0:
+		found_negative = True
+		print("{} contains negative number(s)".format(numlist))
+	i += 1
+if not found_negative:
+	print("{} DOESN'T contain any negative numbers".format(numlist))
 
-
-
-
-
-
-
-
-
-
+# We use found_negative to keep track of whether we have found a negative value or not 
+# we can also still do the above with a for loop but arguebly it's cleaner with while 
 
 
 
