@@ -1074,7 +1074,7 @@ print(sorted(1,4,3.0,2,5), reverse = True) # [5,4,3.0,2,1]
 # sort() - operates in-place, in that it mutates the list so that the elements are sorted
 
 randlist = [4,1,3.0,2,5]
-print(sort(randlist)) # [1,2,3.0,4,5]
+print(A.sort()) # None
 print(randlist) # [1,2,3.0,4,5]
 
 # whereas the following is almost certainly not the desired effect:
@@ -1107,21 +1107,222 @@ def sorted_words(wordlist):
 
 
 
+# DICTIONARIES 
+---------------
+# You will now be introduced to a thing called mapping. 
+# Mapping is when you have a key and a value. The key points to a value 
+# An example of this is the Dewey Decimal System, where a specific code leads you to a book
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney',
+			'Queensland' : 'Brisbane',
+			'Tasmania' : 'Hobart'}
+
+print(capitals['Tasmania']) # Hobart
+
+# This dictionary maps states to their corresponding capital cities 
+
+# The keys in the above dictionary are strings which represent the names of the Australian states.
+# Each key maps to a value, which also happens to be a string in this case. In the general case,
+# the keys and values can be of different types. 
+
+# Dictionary values are constructed using the curly brace characters {}. As a special case, you
+# can construct an empty dictionary using an opening and closing brace with nothing in between
+
+example_empty_dict = {}
+
+# As you shall soon see, it is possible to add new mappings to an existing dictionary, so it 
+# can be useful to construct empty dictionaries and later add values as necessary. 
+
+# Like lists and strings, dictionaries are indexable. However, the indices of dictionaries are keys
+# of arbitrary value, whereas the indices of lists and strings are always integers. A given key can 
+# only occur once in the dictionary, and is associated with a unique value (but you can, of course
+# make the value a list containing multiple objects). You can look up values in a dictionary using 
+# the normal indexing notation:
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney',
+			'Queensland' : 'Brisbane',
+			'Tasmania' : 'Hobart'}
+
+print(capitals['Victoria']) # Melbourne
+print(capitals['New South Wales']) # Sydney
+print(capitals['ACT']) # This is an ERROR because the index does not exist in the dictionary
+
+# Other ways of indexing dictionaries are hte pop and get methods. These return a value 
+# given a key. As you might expect, pop deltes the (key, value) pair after returning 
+# the value, just like with lists. 
+
+my_dict = {"Age":34,"Anna":"Joe","Jobs":"Steve"}
+print(my_dict.get("Age")) # 34
+print(my_dict) # {"Age":34,"Anna":"Joe","Jobs":"Steve"}
+print(my_dict.pop("Jobs")) # Steve
+print(my_dict) # {"Age":34,"Anna":"Joe"}
+
+# The clear method deletes the entire contents of the dictionary, and del removes
+# a key:value pair without returning anything 
+
+my_dict = {"Age":34,"Anna":"Joe","Jobs":"Steve"}
+del my_dict["Age"]
+print(my_dict) # {"Anna":"Joe","Jobs":"Steve"}
+my_dict.clear() 
+print(my_dict) # {}
 
 
+# You can change the value which is associated with a key or add a new key and value pair
+# to the dictionary using the assignment (=) operator
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney',
+			'Queensland' : 'Brisbane',
+			'Tasmania' : 'Hobart'}
+
+print(capitals['Victoria']) # Melbourne
+
+capitals['Victoria'] = "Melbum"
+capitals['ACT'] = "Canberra"
+
+print(capitals['Victoria']) # Melbum
+print(capitals['ACT']) # Canberra  
+
+# Victoria is now mapped to Melbum instead of Melbourne and before ACT was not present
+# in the dictionary before assignment statement, so the above code extends the dictionary
+# with a new mapping
 
 
+# You can test if a key is present in a dictionary using the in operator.
+# Try running the following code a few times, entering both valid and invalid state names:
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney',
+			'Queensland' : 'Brisbane',
+			'Tasmania' : 'Hobart'}
+
+state = input("Enter a state name: ")
+if state in capitals:
+	print(capitals[state])
+else:
+	print(state, 'not found')
 
 
+# You can get the keys in a dictionary using the keys method. 
+# keys returns a spcial iterable collection called dict_keys
+# that supports iteration and the in operator like a list, 
+# but does not support indexing 
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney'}
+
+keys = capitals.keys()
+
+print("The keys:",keys) # (['Victoria', 'New South Wales'])
+
+print("Looping through all keys:")
+for key in keys:
+	print(key) # Victoria\n New South Wales
+
+print("is 'Victoria' in keys?",'Victoria' in keys) # Is 'Victoria' in keys? True
+print(keys[0]) # THIS IS AN ERROR
 
 
+# You can get the values (separate from the keys) using the 
+# values method. values returns a special iterable collection
+# called a dict_values object that acts much like dict_keys object:
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney'}
+
+d_values = capitals.values()
+
+print("The values",d_values) # (['Melbourne','Sydney'])
+
+print("Looping through all values:")
+for value in d_values: 
+	print(value) # Melbourne\n Sydney
+
+print("Is 'Victoria' in values?",'Victoria' in d_values) # "Is 'Victoria' in values? False"
+print(d_values[0]) # THIS IS AN ERROR
 
 
+# Another useful method for dictionaries is the items method. Like keys
+# and values, items returns a view object called dict_items containing 
+# tuples of the (key,value) pairs
+
+# You can also convert these view objects into lists using list. 
+
+capitals = {'Victoria' : 'Melbourne',
+			'New South Wales' : 'Sydney'}
+
+d_items = capitals.items()
+
+print("Items in this dictionary:",d_items) 
+# Items in this dictionary: dict_items([('Victoria','Melbourne'),('New South Wales','Sydney')])
+print("As a list:",list(d_items)) 
+# As a list: [('Victoria','Melbourne'),('New South Wales','Sydney')]
+
+for (key,value) in d_items:
+	print(key,value) # Victoria Melbourne
+					 # New South Wales Sydeny
 
 
+# Keys for dictionaries can only be immutable objects. That means you can use: 
+# int, float, str, tuple, bool as keys
+# But you cannot use: list, set.
+# Could you use ditionaris? Are they mutable or immutable?
+
+# Another important characterisc of dictionaries is that they are not ordered.
+# This can be seen by observing the oder of (key,value) pairs when items method
+# is called is different to the order of insertion of the pairs. This also means
+# that when you iterate over a dictionary, you have to keep this in mind: 
+# the order may change! 
+
+d = {1:0, 2:0, -1:4, "hello":0, 9:9, 2:2, 2:3}
+print(list(d.items())) # [(1,0),(2,3),(-1,4),('hello',0),(9,9)]
+
+# What happened when we put the same key in with a different value?
+# The final value is kept (remember keys need to be unique)
 
 
+# A common programming task is to tally how many times various items appear in a piece 
+# of data. Below is an example program which counts the number of occurences of each
+# letter in the first paragraph of Moby Dick:
 
+MOBY = "Call me Ishmael. Some years ago - never mind how long precisely - having little or no money"
+
+tally = {}
+for char in MOBY:
+	if char in tally:
+		tally[char] += 1
+	else:
+		tally[char] = 1
+
+print(tally['C']) # 1
+print(tally['I']) # 1
+
+
+# After counting all the character in mOby Dick's first paragraph, you can do inderesting things
+# with the information. For instance, you can print out a simple bar chart of the frequencies for
+# all the upper case characters which appear in the text: 
+
+tally = {}
+for char in MOBY:
+	if char in tally:
+		tally[char] += 1
+	else:
+		tally[char] = 1
+
+for key in tally.keys():
+	if key.isupper():
+		print(key + ': ' + '=' * tally[key])
+
+# N: =
+# I: =======
+# C: =
+# T: ==
+# W: ==
+# S: ==
+
+# Something like that, that's not the actual answer
 
 
 
